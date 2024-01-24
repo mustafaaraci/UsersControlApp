@@ -1,0 +1,58 @@
+.navbar{
+
+    background-color: rgb(7, 58, 82) !important;
+}
+
+.navbar-brand{
+
+  
+    color: rgb(214, 240, 240) !important;
+
+   
+}
+
+
+#navbarNav ul li{
+
+    color: white;
+    border: 1px;
+    border-radius: 10px;
+
+}
+
+#navbarNav ul li:hover{
+
+    background-color: rgb(233, 240, 240);
+
+}
+
+.nav-link{
+    color: aliceblue !important;
+}
+
+.nav-link:hover{
+    color: rgb(7, 58, 82) !important;
+} 
+
+.detailsButton{
+
+    background-color:rgb(7, 58, 82) !important;
+}
+.detailsButton:hover{
+
+    background-color:rgb(25, 44, 56) !important;
+}
+
+/* nokta(.) ile başlaması class oldugunu ifade ediyor */
+.card{
+    align-items: center !important;
+}
+/* # ile başlaması id oldugunu ifade ediyor */
+#createButton{
+    background-color:rgb(7, 58, 82) !important;
+}
+
+#createButton:hover{
+    background-color:rgb(25, 44, 56) !important;
+     color:  aliceblue !important;
+}
