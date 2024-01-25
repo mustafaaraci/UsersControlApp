@@ -38,24 +38,18 @@ function fetchGetUsers() {
 //burada fonksiyonumuzu çagırıyoruz.
 fetchGetUsers();
 
-// burada tıklama eventi gerçekleştiriyoruz ve kullanıcının id sini yakalıyoruz.
-document.getElementById("userList").addEventListener("click", function(event) {
+//click eventini gerçekleştiriyoruz
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("detailsButton")) {
+    // Tıklanan butonun id sini aldık
+    const userId = e.target.getAttribute("user_id");
 
-    //eğer tıklanan öğe detailsButton adında sınıfa sahipse işlemleri gerçekleştir
-    if (event.target.classList.contains("detailsButton")) {
-//tıklanan buttondaki user id yi al ve detay sayfasına yönlendir
-      const userId = event.target.getAttribute("user_id");
-      redirectToDetailsPage(userId);
-    }
-  });
-  
- function redirectToDetailsPage(userId) {
- 
-     const detailsPageUrl = "userDetails.html?id=" + userId;
-      window.location.href = detailsPageUrl;
+    // userDetails.html sayfasına yönlendirme yapıldı.
+    window.location.href = `userDetails.html?id=${userId}`;
   }
-    
-  
+});
+
+
 
 
 
