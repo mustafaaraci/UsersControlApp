@@ -34,7 +34,7 @@
         <div class="row  mt-5">
 
 <!-- methodu post olan bir form tasarımı oluşturdum -->
-            <form class="justify-center" method="post">
+            <form class="justify-center" method="post" id="formCreate">
                 <div class="mt-3">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" id="name" required>
@@ -60,9 +60,87 @@
               <!-- form end -->
         
           </div>
+
+          <div class="container" style="width: 100%;margin-top:10px;" id="userCreateList">
+            <!-- buraya gelecek -->
+          </div>
           
       </div>
+      <script>
+      
+        const apiUrlCreateUsers = 'https://reqres.in/api/users';
 
+        document.getElementById("formCreate").addEventListener("submit", function (event) {
+            event.preventDefault();
+           //burada kullanıcının girdiği değerleri alıyoruz
+            var name = document.getElementById("name").value;
+            var surname = document.getElementById("surname").value;
+            var email = document.getElementById("email").value;
+            var job = document.getElementById("job").value;
+            //burada aldıgımız değerleri bir objeye tanımlıyoruz
+            var data = {
+                name: name,
+                surname: surname,
+                email: email,
+                job: job
+            };
+          // // Fetch API'sini kullanarak POST isteğimizi yapıyoruz
+            fetch(apiUrlCreateUsers, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+              //API den gelen yanıtımız başarılı mı değil mi kontrol ediyoruz
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+              //gelen yanıtımızı gösteriyoruz ve işlem başarılı ise mesaj gösteriyoruz
+                console.log('API yanıtı:', data);
+
+                alert('Başarıyla eklendi!');
+               //gelen data yı usersCreate değişkenine  atıyoruz
+                var usersCreate = data;
+
+                //usersCreate içersindeki dataları bir satır içerisinde card oluşturup içersine atıyoruz
+                var output = "<div class='row' style='width: 100%;margin-top:70px;'>";
+
+                usersCreate.forEach((userCreate) => {
+                    output +=
+                        `
+                        <div class='row' style='width: 100%;margin-top:70px;'>
+                          <div class="col-md-4 mb-3">
+                          <div class="card d-flex">
+                              <img src="" class="card-img-top" alt="${userCreate.name} ${userCreate.surname}">
+                             <div class="card-body">
+                               <h5 class="card-title">${userCreate.name} ${userCreate.surname}</h5>
+                               <p class ="card-item">${userCreate.email}</p>
+                               <p class ="card-item">${userCreate.job}</p>
+                            </div>
+                           </div>
+                           </div>
+                           </div>
+
+                        `;
+                });
+               //burada oluşturdugumuz html içeriğimizi  satır içersine yerleştiriyoruz
+                document.getElementById("userCreateList").innerHTML = output + "</div>";
+            })
+            //hata durumunda mesaj gösteriyoruz
+            .catch(error => {
+                console.error('Hata:', error);
+
+                alert('Ekleme sırasında bir hata oluştu.');
+            });
+        });
+    
+
+     </script>
     
        
 

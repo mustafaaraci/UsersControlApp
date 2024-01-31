@@ -1,4 +1,4 @@
-// burada apiUrl adında değişkenimizi  tanımladım
+// burada apiUrlUsers adında değişkenimizi  tanımladım
 const apiUrlUsers = 'https://reqres.in/api/users';
 
 
